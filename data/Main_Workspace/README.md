@@ -86,5 +86,38 @@ Specify license information here (e.g., MIT, CC BY). For questions or collaborat
 ----
 If you’d like, I can: add a `requirements.txt`, scaffold `scripts/ingest_cord19.py`, or convert exploratory notebooks into runnable pipelines. Tell me which next step you prefer.
 
+## Workspace & Data (data/Main_Workspace)
+This repository includes a `data/Main_Workspace` folder with collected artifacts used for the CORD‑19 analysis. Current contents (as committed) include:
+
+- `data/Main_Workspace/metadata.csv` — large CORD‑19 metadata CSV (≈ 980 MB)
+- `data/Main_Workspace/transformer_model_complete.pth` — pretrained model weights (≈ 267 MB)
+- `data/Main_Workspace/Updated CORD-19 Analysis.ipynb` — analysis notebook used for EDA & figures
+- `data/Main_Workspace/CORD-19 Presentation (Final).pptx` — presentation file
+- `data/Main_Workspace/metadata.readme` — short notes about the metadata file
+
+Extraction note: these files were originally uploaded as a ZIP and extracted into the repository workspace (see `data/`); the large binary and CSV were retained for analysis.
+
+Git LFS migration and push status
+- The large binary files above exceed typical GitHub soft limits and were migrated to Git LFS to keep the repository healthy.
+- The repository history was rewritten using `git lfs migrate import --include="*.pth,*.csv"` and the cleaned `main` branch was force-pushed to the remote. The LFS objects were uploaded successfully.
+
+What collaborators must do after this change
+- If you have an existing clone, update it by running:
+
+```bash
+git fetch origin
+git reset --hard origin/main
+git lfs install
+git lfs pull
+```
+
+- If you prefer not to keep large artifacts in the repo, consider moving `metadata.csv` and model files to external storage (Google Drive, S3) and add download/ingest scripts.
+
+Storage recommendations
+- Use Git LFS for model weights and large CSVs, or store them outside the Git repository and provide small placeholder files and download scripts in `scripts/`.
+
+Contact / Support
+- If you want, I can remove the large files entirely from the repo and provide a storage+ingest script, or add a `requirements.txt` and scaffold ingestion scripts and CI for reproducing the analysis.
+
 
 
